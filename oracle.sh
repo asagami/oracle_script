@@ -107,4 +107,4 @@ export PATH=$ORACLE_HOME/bin:$PATH:$HOME/bin' >> /home/oracle/.bash_profile
 #exec
 export LANG=en_US
 cd /oracle/databasel
-./runInstaller
+#./runInstaller
