@@ -1,3 +1,8 @@
+#！bin/bash
+
+
+
+
 #add group and user
  /usr/sbin/groupadd oinstall
  /usr/sbin/groupadd dba
@@ -18,7 +23,7 @@ net.core.rmem_max = 4194304
 net.core.wmem_default = 262144
 net.core.wmem_max = 1048586' >> /etc/sysctl.conf
 
-/sbin/sysctl -ps
+/sbin/sysctl -p
 
 echo 'oracle soft nproc 2047
 oracle hard nproc 16384
@@ -37,3 +42,8 @@ echo 'export ORACLE_BASE=/oracle
 export ORACLE_HOME=$ORACLE_BASE/oracle
 export ORACLE_SID=orcl
 export PATH=$ORACLE_HOME/bin:$PATH:$HOME/bin' >> /home/oracle/.bash_profile
+
+#exec
+export LANG=en_US
+cd /oracle/databasel
+./runInstaller
