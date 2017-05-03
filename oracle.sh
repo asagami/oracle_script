@@ -26,17 +26,19 @@ fi
 #add configuration
 kernelset()
 {
-echo 'fs.aio-max-nr = 1048576
+cp $SYSCTL{,.ora_bak} && cat <<EOF >>$SYSCTL
+fs.aio-max-nr = 1048576
 fs.file-max = 6815744
 kernel.shmall = 2097152
-kernel.shmmax = 536870912
+kernel.shmmax = 4294967296
 kernel.shmmni = 4096
 kernel.sem = 250 32000 100 128
 net.ipv4.ip_local_port_range = 9000 65500
 net.core.rmem_default = 262144
 net.core.rmem_max = 4194304
 net.core.wmem_default = 262144
-net.core.wmem_max = 1048586' >> /etc/sysctl.conf
+net.core.wmem_max = 1048576
+EOF
     if [ $? -eq 0 ];then
         echo -e "\n\e[1;36m kernel parameters updated successfully --- OK! \e[0m"
         fi
@@ -48,7 +50,6 @@ echo 'oracle soft nproc 2047
 oracle hard nproc 16384
 oracle soft nofile 1024
 oracle hard nofile 65536' >> /etc/security/limits.conf 
-EOF
     if [ $? -eq 0 ];then
         echo  -e "\n\e[1;36m $LIMITS updated successfully ... OK! \e[0m"
     fi
