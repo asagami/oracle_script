@@ -42,7 +42,7 @@ useradd(){
 #add configuration
 kernelset()
 {
-cp $SYSCTL{,.ora_bak} && cat <<EOF >>$SYSCTL
+echo'
 fs.aio-max-nr = 1048576
 fs.file-max = 6815744
 kernel.shmall = 2097152
@@ -54,7 +54,7 @@ net.core.rmem_default = 262144
 net.core.rmem_max = 4194304
 net.core.wmem_default = 262144
 net.core.wmem_max = 1048576
-EOF
+' >> /etc/sysctl.conf
     if [ $? -eq 0 ];then
         echo -e "\n\e[1;36m kernel parameters updated successfully --- OK! \e[0m"
         fi
@@ -77,9 +77,10 @@ cat $LIMITS | grep '^o'
 
 setlogin()
 {
-    cp $PAM{,.ora_bak} && cat <<EOF >>$PAM
-session     required    pam_limits.so
-EOF
+echo
+'
+    session     required    pam_limits.so
+' >> /etc/pam.d/login
     if [ $? -eq 0 ];then
         echo -e "\n\e[1;36m  $PAM updated successfully ... OK! \e[0m"
     fi
