@@ -11,7 +11,7 @@ if [ `cat /proc/meminfo | grep MemTotal | awk '{print $2}'` -lt 1048576 ];then
     echo  -e "\n\e[1;33m Memory Small \e[0m"
     exit 1
 else
-  echo -e "\n\e[1;36m Memory checked PASS \e[0m"
+    echo -e "\n\e[1;36m Memory checked PASS \e[0m"
 fi
 }
 
@@ -79,7 +79,7 @@ setlogin()
 {
 echo
 '
-    session     required    pam_limits.so
+    session  required  pam_limits.so
 ' >> /etc/pam.d/login
     if [ $? -eq 0 ];then
         echo -e "\n\e[1;36m  $PAM updated successfully ... OK! \e[0m"
